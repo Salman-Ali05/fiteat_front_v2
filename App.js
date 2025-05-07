@@ -11,7 +11,9 @@ import AdminOrders from './pages/admin/AdminOrders';
 // Création du stack navigator
 const Stack = createStackNavigator();
 
+
 export default function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
