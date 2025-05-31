@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList, Pressable, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Modal, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import AdmintopMenu from '../../components/admin/AdminTopMenu';
 import AdminBotMenu from '../../components/admin/AdminBotMenu';
@@ -40,7 +40,7 @@ const dropdownItems = [
 
 const AdminHome = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [modalType, setModalType] = useState(''); // 'coach' ou 'adherent'
+    const [modalType, setModalType] = useState('');
     const [selectedValue, setSelectedValue] = useState(null);
 
     const openModal = (type) => {
@@ -67,11 +67,7 @@ const AdminHome = () => {
 
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Coachs / Diététiciens</Text>
-                    <Ionicons
-                        name="add-circle"
-                        style={styles.addIcon}
-                        onPress={() => openModal('coach')}
-                    />
+                    <Ionicons name="add-circle" style={styles.addIcon} onPress={() => openModal('coach')} />
                 </View>
                 <FlatList
                     data={coaches}
@@ -82,11 +78,7 @@ const AdminHome = () => {
 
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Adhérents</Text>
-                    <Ionicons
-                        name="add-circle"
-                        style={styles.addIcon}
-                        onPress={() => openModal('adherent')}
-                    />
+                    <Ionicons name="add-circle" style={styles.addIcon} onPress={() => openModal('adherent')} />
                 </View>
                 <FlatList
                     data={adherents}
@@ -98,12 +90,7 @@ const AdminHome = () => {
 
             <AdminBotMenu />
 
-            <Modal
-                animationType="fade"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={closeModal}
-            >
+            <Modal animationType="fade" transparent={true} visible={modalVisible} onRequestClose={closeModal}>
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContent}>
                         <Text style={styles.modalTitle}>
@@ -113,21 +100,23 @@ const AdminHome = () => {
                             <TextInput style={styles.inputs} placeholder='Email' />
                             <TextInput style={styles.inputs} placeholder='Nom' />
                             <TextInput style={styles.inputs} placeholder='Prénom' />
-                            <RNPickerSelect
-                                onValueChange={(value) => setSelectedValue(value)}
-                                placeholder={{
-                                    label: 'Sélectionner un type',
-                                    value: null,
-                                    color: "#FFB340"
-                                }}
-                                items={dropdownItems}
-                                value={selectedValue}
-                                useNativeAndroidPickerStyle={false}
-                                style={pickerSelectStyles}
-                                Icon={() => <Ionicons name="chevron-down" size={18} color="#FFB340" style={{ marginRight: 10 }} />}
-                            />
-
-
+                            <View style={{ zIndex: 10 }}>
+                                <RNPickerSelect
+                                    onValueChange={(value) => setSelectedValue(value)}
+                                    placeholder={{
+                                        label: 'Sélectionner un type',
+                                        value: null,
+                                        color: "#FFB340"
+                                    }}
+                                    items={dropdownItems}
+                                    value={selectedValue}
+                                    useNativeAndroidPickerStyle={false}
+                                    style={pickerSelectStyles}
+                                    Icon={() => (
+                                        <Ionicons name="chevron-down" size={18} color="#FFB340" style={{ marginRight: 10 }} />
+                                    )}
+                                />
+                            </View>
                         </View>
 
                         <View style={styles.buttonContainer}>
@@ -138,11 +127,9 @@ const AdminHome = () => {
                                 <Text style={styles.closeButtonText}>Fermer</Text>
                             </TouchableOpacity>
                         </View>
-
                     </View>
                 </View>
             </Modal>
-
         </View>
     );
 };
@@ -226,7 +213,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
-
     form: {
         width: '90%',
     },
@@ -272,4 +258,3 @@ const pickerSelectStyles = {
         color: '#FFB340',
     },
 };
-

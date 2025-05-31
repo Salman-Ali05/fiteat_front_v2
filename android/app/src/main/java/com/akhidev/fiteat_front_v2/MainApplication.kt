@@ -2,6 +2,8 @@ package com.akhidev.fiteat_front_v2
 
 import android.app.Application
 import android.content.res.Configuration
+import com.rnimmersivemode.RNImmersiveModePackage;
+
 
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -19,23 +21,22 @@ import expo.modules.ReactNativeHostWrapper
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost = ReactNativeHostWrapper(
-        this,
-        object : DefaultReactNativeHost(this) {
-          override fun getPackages(): List<ReactPackage> {
-            val packages = PackageList(this).packages
-            // Packages that cannot be autolinked yet can be added manually here, for example:
-            // packages.add(new MyReactNativePackage());
-            return packages
-          }
+  this,
+  object : DefaultReactNativeHost(this) {
+    override fun getPackages(): List<ReactPackage> {
+      val packages = PackageList(this).packages.toMutableList()
+      packages.add(RNImmersiveModePackage())
+      return packages
+    }
 
-          override fun getJSMainModuleName(): String = ".expo/.virtual-metro-entry"
+    override fun getJSMainModuleName(): String = ".expo/.virtual-metro-entry"
 
-          override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
+    override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
-          override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
-          override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
-      }
-  )
+    override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+    override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
+  }
+)
 
   override val reactHost: ReactHost
     get() = ReactNativeHostWrapper.createReactHost(applicationContext, reactNativeHost)
