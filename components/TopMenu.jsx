@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 const TopMenu = () => {

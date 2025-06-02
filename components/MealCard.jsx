@@ -1,24 +1,23 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const MealCard = ({ title, discount }) => {
+const MealCard = ({ title, discount, image }) => {
+
     return (
         <View style={[styles.card, discount && styles.cardDiscount]}>
-            {/* Icône Favoris */}
+
             <Ionicons name="heart" size={18} color="red" style={styles.favoriteIcon} />
 
-            {/* Titre du plat */}
+            <Image source={image} style={styles.image} />
+
             <Text style={styles.mealTitle}>{title}</Text>
 
-            {/* Réduction si disponible */}
             {discount && (
                 <View style={styles.discountBadge}>
                     <Text style={styles.discountText}>{discount}</Text>
                 </View>
             )}
 
-            {/* Icône panier */}
             <TouchableOpacity style={styles.cartButton}>
                 <Ionicons name="cart" size={18} color="green" />
             </TouchableOpacity>
@@ -72,4 +71,11 @@ const styles = StyleSheet.create({
         bottom: 5,
         right: 5,
     },
+    image: {
+        width: '100%',
+        height: 100,
+        borderRadius: 8,
+        marginBottom: 10,
+    },
+
 });
