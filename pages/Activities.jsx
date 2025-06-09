@@ -1,13 +1,26 @@
-import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import TopMenu from '../components/TopMenu';
 import BotMenu from '../components/BotMenu';
+import { Ionicons } from '@expo/vector-icons';
 
 const activities = [
-    { id: '1', title: 'Poids de corps' },
-    { id: '2', title: 'Étirement' },
-    { id: '3', title: 'Maison / Salle de sport' },
+  { id: '1', title: 'Poids de corps', icon: 'body' },
+  { id: '2', title: 'Étirement', icon: 'walk' },
+  { id: '3', title: 'Maison / Salle de sport', icon: 'home' },
+  { id: '4', title: 'Cardio', icon: 'heart' },
+  { id: '5', title: 'HIIT', icon: 'flash' },
+  { id: '6', title: 'Renforcement musculaire', icon: 'barbell' },
+  { id: '7', title: 'Mobilité', icon: 'accessibility' },
+  { id: '8', title: 'Yoga', icon: 'leaf' },
+  { id: '9', title: 'Pilates', icon: 'ellipse-outline' },
+  { id: '10', title: 'Préparation physique', icon: 'fitness' },
+  { id: '11', title: 'Débutant', icon: 'happy' },
+  { id: '12', title: 'Avancé', icon: 'rocket' },
+  { id: '13', title: 'Gainage', icon: 'pause' },
+  { id: '14', title: 'Pliométrie', icon: 'analytics' },
+  { id: '15', title: 'Cross training', icon: 'pulse' },
 ];
+
 
 const Activities = () => {
     return (
@@ -25,7 +38,7 @@ const Activities = () => {
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
                         <View style={styles.activityCard}>
-                            <Image source={item.image} style={styles.activityImage} />
+                            <Ionicons name={item.icon} style={styles.activityIcons} />
                             <Text style={styles.activityText}>{item.title}</Text>
                         </View>
                     )}
@@ -64,16 +77,21 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 5,
         alignItems: 'center',
+        justifyContent: 'center',
     },
-    activityImage: {
-        width: 80,
-        height: 80,
+    activityIcons: {
+        fontSize: 35,
+        color: '#1E1E1E',
         borderRadius: 8,
+        textAlign: 'center',
+        alignItems: 'center',
     },
     activityText: {
         color: '#1E1E1E',
         fontSize: 14,
         marginTop: 5,
+        textAlign: 'center',
+        fontWeight: 'bold',
     }
 });
 

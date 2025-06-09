@@ -1,31 +1,38 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useContext } from 'react';
+import { CartContext } from '../contexts/CartContext';
 
 const MealCard = ({ title, discount, image }) => {
+  const { cartItems, addToCart } = useContext(CartContext);
 
-    return (
-        <View style={[styles.card, discount && styles.cardDiscount]}>
+  const handleAdd = () => {
+    addToCart({ title, discount, image });
+  };
 
-            <Ionicons name="heart" size={18} color="red" style={styles.favoriteIcon} />
+  return (
+    <View style={[styles.card, discount && styles.cardDiscount]}>
+      <Ionicons name="heart" size={18} color="red" style={styles.favoriteIcon} />
 
-            <Image source={image} style={styles.image} />
+      <Image source={image} style={styles.image} />
 
-            <Text style={styles.mealTitle}>{title}</Text>
+      <Text style={styles.mealTitle}>{title}</Text>
 
-            {discount && (
-                <View style={styles.discountBadge}>
-                    <Text style={styles.discountText}>{discount}</Text>
-                </View>
-            )}
-
-            <TouchableOpacity style={styles.cartButton}>
-                <Ionicons name="cart" size={18} color="green" />
-            </TouchableOpacity>
+      {discount && (
+        <View style={styles.discountBadge}>
+          <Text style={styles.discountText}>{discount}</Text>
         </View>
-    );
+      )}
+
+      <TouchableOpacity style={styles.cartButton} onPress={handleAdd}>
+        <Ionicons name="cart" size={18} color="green" />
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 export default MealCard;
+
 
 const styles = StyleSheet.create({
     card: {

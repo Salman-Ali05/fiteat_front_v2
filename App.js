@@ -1,9 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'; // ✅ ajout ici
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet } from 'react-native';
 
-// Pages
 import Login from './pages/Login';
 import Register from './pages/Register';
 import TrainHome from './pages/TrainHome';
@@ -11,6 +10,9 @@ import OrdersHome from './pages/Orders';
 import Activities from './pages/Activities';
 import AdminHome from './pages/admin/AdminHome';
 import AdminOrders from './pages/admin/AdminOrders';
+import Cart from './pages/Cart';
+import { CartProvider } from './contexts/CartContext';
+
 
 const Stack = createStackNavigator();
 
@@ -18,25 +20,28 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-              animationTypeForReplace: 'push',
-              animation: 'fade',
-              gestureEnabled: false,
-            }}
-          >
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="TrainHome" component={TrainHome} />
-            <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="OrdersHome" component={OrdersHome} />
-            <Stack.Screen name="Activities" component={Activities} />
-            <Stack.Screen name="Adm_Home" component={AdminHome} />
-            <Stack.Screen name="Adm_Orders" component={AdminOrders} />
-            <Stack.Screen name="Logout" component={Login} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <CartProvider>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+                animationTypeForReplace: 'push',
+                animation: 'fade',
+                gestureEnabled: false,
+              }}
+            >
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="TrainHome" component={TrainHome} />
+              <Stack.Screen name="Register" component={Register} />
+              <Stack.Screen name="OrdersHome" component={OrdersHome} />
+              <Stack.Screen name="Cart" component={Cart} />
+              <Stack.Screen name="Activities" component={Activities} />
+              <Stack.Screen name="Adm_Home" component={AdminHome} />
+              <Stack.Screen name="Adm_Orders" component={AdminOrders} />
+              <Stack.Screen name="Logout" component={Login} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </CartProvider>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -45,6 +50,6 @@ export default function App() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#1E1E1E', // adapte si nécessaire à ton thème
+    backgroundColor: '#1E1E1E',
   },
 });

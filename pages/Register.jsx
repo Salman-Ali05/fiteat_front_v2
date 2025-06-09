@@ -1,13 +1,10 @@
-import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const Register = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            {/* Logo */}
             <Image source={require('../assets/logo.png')} style={styles.logo} />
 
-            {/* Champs de saisie */}
             <Text style={styles.label}>Adresse email</Text>
             <TextInput style={styles.input} placeholder="Entrez votre email" placeholderTextColor="#bbb" />
 
@@ -17,12 +14,10 @@ const Register = ({ navigation }) => {
             <Text style={styles.label}>Confirmer mot de passe</Text>
             <TextInput style={styles.input} placeholder="Confirmez votre mot de passe" placeholderTextColor="#bbb" secureTextEntry />
 
-            {/* Bouton d'inscription */}
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TrainHome')}>
                 <Text style={styles.buttonText}>INSCRIPTION</Text>
             </TouchableOpacity>
 
-            {/* Lien de connexion */}
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.registerText}>
                     Déjà inscrit ? <Text style={styles.registerLink}>Connecte toi ici</Text>

@@ -1,14 +1,14 @@
-import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import TopMenu from '../components/TopMenu';
 import BotMenu from '../components/BotMenu';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const activities = [
-    { id: '1', title: 'Warmup' },
-    { id: '2', title: 'Training' },
-    { id: '3', title: 'Warmup' },
-    { id: '4', title: 'Stretching' },
+    { id: '1', title: 'Warmup', icon: 'walk-outline' },
+    { id: '2', title: 'Gym', icon: 'barbell-outline' },
+    { id: '3', title: 'Stretch', icon: 'body-outline' },
+    { id: '4', title: 'Body Workout', icon: 'fitness-outline' },
 ];
 
 const getCurrentDate = () => {
@@ -41,7 +41,7 @@ const TrainHome = () => {
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
                         <View style={styles.activityCard}>
-                            <Image source={item.image} style={styles.activityImage} />
+                            <Ionicons name={item.icon} style={styles.activityIcons} />
                             <Text style={styles.activityText}>{item.title}</Text>
                         </View>
                     )}
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     cardText: {
-        color: '#000',
+        color: '#1E1E1E',
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 5,
@@ -109,17 +109,22 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 10,
         margin: 5,
+        justifyContent: 'center',
         alignItems: 'center',
+        height: 120,
     },
-    activityImage: {
-        width: 80,
-        height: 80,
+    activityIcons: {
+        fontSize: 50,
+        color: '#1E1E1E',
         borderRadius: 8,
+        textAlign: 'center',
+        alignItems: 'center',
     },
     activityText: {
         color: '#1E1E1E',
         fontSize: 14,
         marginTop: 5,
+        fontWeight: 'bold',
     }
 });
 

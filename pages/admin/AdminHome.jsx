@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, FlatList, Modal, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
 import AdmintopMenu from '../../components/admin/AdminTopMenu';
 import AdminBotMenu from '../../components/admin/AdminBotMenu';
 import { Ionicons } from '@expo/vector-icons';

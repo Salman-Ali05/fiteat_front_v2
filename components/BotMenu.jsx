@@ -1,5 +1,4 @@
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -11,7 +10,7 @@ const BotMenu = () => {
     const tabs = [
         { name: 'TrainHome', icon: 'home' },
         { name: 'Activities', icon: 'barbell' },
-        { name: 'OrdersHome', icon: 'cart' },
+        { name: 'Cart', icon: 'cart' },
         { name: 'Login', icon: 'person' },
     ];
 

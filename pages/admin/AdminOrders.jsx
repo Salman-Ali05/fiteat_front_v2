@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import AdmintopMenu from '../../components/admin/AdminTopMenu';
 import AdminBotMenu from '../../components/admin/AdminBotMenu';

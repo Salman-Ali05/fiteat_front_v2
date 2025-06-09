@@ -1,5 +1,4 @@
 import { useRoute } from '@react-navigation/native';
-import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 
 const Login = ({ navigation }) => {
