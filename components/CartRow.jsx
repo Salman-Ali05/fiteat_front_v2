@@ -1,19 +1,22 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { Icon } from 'react-native-paper';
+import React, { useContext } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { CartContext } from '../contexts/CartContext';
 
-const CartRow = ({ title, discount, image }) => {
+const CartRow = ({ id, title, discount, image }) => {
+    const { removeFromCart } = useContext(CartContext);
 
     return (
         <View style={styles.card}>
             <Image source={image} style={styles.image} />
+            <View style={styles.details}>
+                <Text style={styles.title}>{title}</Text>
+                {discount && <Text style={styles.discount}>{discount}</Text>}
+            </View>
 
-            <Icon name="heart" size={18} color="red" style={styles.favoriteIcon} />
-            <Text style={styles.mealTitle}>{title}</Text>
-            {discount && (
-                <View style={styles.discountBadge}>
-                    <Text style={styles.discountText}>{discount}</Text>
-                </View>
-            )}
+            <TouchableOpacity onPress={() => removeFromCart(id)}>
+                <Ionicons name="trash-outline" size={24} color="#FF0000" />
+            </TouchableOpacity>
         </View>
     );
 };
@@ -22,49 +25,28 @@ export default CartRow;
 
 const styles = StyleSheet.create({
     card: {
-        flex: 1,
-        padding: 15,
-        margin: 5,
-        minHeight: 120,
-        position: 'relative',
-        justifyContent: 'flex-end',
-        borderRadius: 10,
-        display: 'flex',
-        backgroundColor: 'rgba(255, 255, 255, 0.61)',
-        borderRadius: 15
-    },
-    favoriteIcon: {
-    },
-    mealTitle: {
-        color: '#000',
-        fontSize: 14,
-        fontWeight: 'bold',
-        textAlign: 'left',
-    },
-    discountBadge: {
-        position: 'absolute',
-        top: 5,
-        right: 5,
-        backgroundColor: '#000',
-        paddingHorizontal: 8,
-        paddingVertical: 2,
-        borderRadius: 25,
-    },
-    discountText: {
-        color: '#FFB340',
-        fontSize: 12,
-        fontWeight: 'bold',
-    },
-    cartButton: {
-        position: 'absolute',
-        bottom: 5,
-        right: 5,
-    },
-    image: {
-        width: '100%',
-        height: 100,
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#fff',
         borderRadius: 8,
+        padding: 10,
         marginBottom: 10,
     },
-
+    image: {
+        width: 70,
+        height: 70,
+        borderRadius: 8,
+    },
+    details: {
+        flex: 1,
+        marginLeft: 15,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    discount: {
+        color: '#FFB340',
+        fontSize: 14,
+    },
 });
