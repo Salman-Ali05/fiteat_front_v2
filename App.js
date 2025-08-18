@@ -13,7 +13,8 @@ import AdminOrders from './pages/admin/AdminOrders';
 import Cart from './pages/Cart';
 import { CartProvider } from './contexts/CartContext';
 import Activity from './pages/Activity';
-
+import Progression from './pages/Progression';
+import Menu from "./pages/Menu";
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,8 @@ export default function App() {
               <Stack.Screen name="Adm_Home" component={AdminHome} />
               <Stack.Screen name="Adm_Orders" component={AdminOrders} />
               <Stack.Screen name="Logout" component={Login} />
+              <Stack.Screen name="Progression" component={Progression} />
+              <Stack.Screen name="Menu" component={Menu} />
             </Stack.Navigator>
           </NavigationContainer>
         </CartProvider>

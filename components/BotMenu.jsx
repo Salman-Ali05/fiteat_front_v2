@@ -6,12 +6,11 @@ const BotMenu = () => {
     const navigation = useNavigation();
     const route = useRoute();
 
-    // Définition des onglets et de leurs routes
     const tabs = [
         { name: 'TrainHome', icon: 'home' },
         { name: 'Activities', icon: 'barbell' },
         { name: 'Cart', icon: 'cart' },
-        { name: 'Login', icon: 'person' },
+        { name: 'Menu', icon: 'person' },
     ];
 
     return (
@@ -28,7 +27,7 @@ const BotMenu = () => {
                         <View style={[styles.iconWrapper, isSelected && styles.iconWrapperSelected]}>
                             <Ionicons
                                 name={tab.icon}
-                                size={isSelected ? 22 : 20} // Taille plus petite pour un menu compact
+                                size={isSelected ? 22 : 20} 
                                 style={[styles.icons, isSelected && styles.iconsSelected]}
                             />
                         </View>
@@ -44,13 +43,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: 55, // Réduit la hauteur du menu
+        height: 55,
         backgroundColor: '#FFB340',
         position: 'absolute',
         bottom: 0,
         left: 0,
         right: 0,
-        paddingHorizontal: 10, // Ajoute un peu d'espace
+        paddingHorizontal: 10,
     },
     navItem: {
         alignItems: 'center',

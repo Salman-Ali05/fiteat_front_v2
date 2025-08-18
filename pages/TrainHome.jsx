@@ -3,7 +3,7 @@ import { ProgressBar } from 'react-native-paper';
 import TopMenu from '../components/TopMenu';
 import BotMenu from '../components/BotMenu';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 
 const activities = [
@@ -22,7 +22,6 @@ const getCurrentDate = () => {
 const TrainHome = () => {
 
     const navigation = useNavigation();
-    const route = useRoute();
 
     return (
         <View style={styles.container}>
@@ -34,10 +33,10 @@ const TrainHome = () => {
                 <Text style={styles.date}>{getCurrentDate()}</Text>
                 <Text style={styles.welcomeText}>Bonjour, <Text style={styles.boldText}>Kate</Text> 👋</Text>
 
-                <View style={styles.card}>
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Progression')}>
                     <Text style={styles.cardText}>Progression %</Text>
                     <ProgressBar progress={0.7} color="#4169E1" style={styles.progressBar} />
-                </View>
+                </TouchableOpacity>
 
                 <Text style={styles.sectionTitle}>Activités d’aujourd’hui</Text>
                 <FlatList
