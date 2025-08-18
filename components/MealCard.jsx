@@ -3,11 +3,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
 
-const MealCard = ({ title, discount, image }) => {
+const MealCard = ({ id, title, discount, image, price}) => {
   const { cartItems, addToCart } = useContext(CartContext);
 
   const handleAdd = () => {
-    addToCart({ title, discount, image });
+    addToCart({ id, title, discount, image, price });
   };
 
   return (
@@ -23,6 +23,8 @@ const MealCard = ({ title, discount, image }) => {
           <Text style={styles.discountText}>{discount}</Text>
         </View>
       )}
+
+      <Text style={styles.mealPrice}>{price} €</Text>
 
       <TouchableOpacity style={styles.cartButton} onPress={handleAdd}>
         <Ionicons name="cart" size={18} color="green" />
@@ -45,19 +47,28 @@ const styles = StyleSheet.create({
         position: 'relative',
         justifyContent: 'flex-end',
     },
-    cardDiscount: {
-        // borderTopRightRadius: 40, 
-    },
     favoriteIcon: {
         position: 'absolute',
         top: 5,
         left: 5,
+        zIndex: 1,
     },
     mealTitle: {
         color: '#000',
         fontSize: 14,
         fontWeight: 'bold',
         textAlign: 'left',
+    },
+    mealPrice: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: 'bold',
+        textAlign: 'left',
+        marginTop: 5,
+        backgroundColor: '#333',
+        width: 60,
+        padding: 5,
+        borderRadius: 10,
     },
     discountBadge: {
         position: 'absolute',

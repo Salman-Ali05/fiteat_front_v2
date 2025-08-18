@@ -1,8 +1,10 @@
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import TopMenu from '../components/TopMenu';
 import BotMenu from '../components/BotMenu';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
 
 const activities = [
     { id: '1', title: 'Warmup', icon: 'walk-outline' },
@@ -17,8 +19,11 @@ const getCurrentDate = () => {
     return date.toLocaleDateString('fr-EU', options).toUpperCase();
 };
 
-
 const TrainHome = () => {
+
+    const navigation = useNavigation();
+    const route = useRoute();
+
     return (
         <View style={styles.container}>
 
@@ -40,10 +45,10 @@ const TrainHome = () => {
                     numColumns={2}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
-                        <View style={styles.activityCard}>
+                        <TouchableOpacity style={styles.activityCard} onPress={() => navigation.navigate('Activity', { activityTitle: item.title })}>
                             <Ionicons name={item.icon} style={styles.activityIcons} />
                             <Text style={styles.activityText}>{item.title}</Text>
-                        </View>
+                        </TouchableOpacity>
                     )}
                 />
 
