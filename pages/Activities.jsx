@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native
 import TopMenu from '../components/TopMenu';
 import BotMenu from '../components/BotMenu';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native'; // 👈 IMPORT
+import { useNavigation } from '@react-navigation/native';
 
 const activities = [
     { id: '1', title: 'Poids de corps', icon: 'body' },
@@ -23,7 +23,7 @@ const activities = [
 ];
 
 const Activities = () => {
-    const navigation = useNavigation(); // 👈 INIT
+    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>

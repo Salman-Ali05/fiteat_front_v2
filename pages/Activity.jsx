@@ -3,6 +3,7 @@ import TopMenu from '../components/TopMenu';
 import BotMenu from '../components/BotMenu';
 import WorkoutCard from '../components/WorkoutCard';
 import { useRoute } from '@react-navigation/native';
+import BackButton from '../components/BackButton';
 
 const Activity = () => {
     const route = useRoute();
@@ -22,6 +23,7 @@ const Activity = () => {
     return (
         <View style={styles.container}>
             <TopMenu />
+            <BackButton />
 
             <View style={styles.content}>
                 <Text style={styles.activityTitle}>{activityTitle}</Text>

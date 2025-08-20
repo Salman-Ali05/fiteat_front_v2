@@ -1,15 +1,20 @@
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { CartContext } from '../contexts/CartContext';
+import { useContext } from 'react';
 
 const BotMenu = () => {
     const navigation = useNavigation();
     const route = useRoute();
 
+    const cartItems = useContext(CartContext).cartItems;
+    const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
     const tabs = [
         { name: 'TrainHome', icon: 'home' },
         { name: 'Activities', icon: 'barbell' },
-        { name: 'Cart', icon: 'cart' },
+        { name: 'Cart', icon: 'cart', badge: totalItems },
         { name: 'Menu', icon: 'person' },
     ];
 
@@ -27,9 +32,14 @@ const BotMenu = () => {
                         <View style={[styles.iconWrapper, isSelected && styles.iconWrapperSelected]}>
                             <Ionicons
                                 name={tab.icon}
-                                size={isSelected ? 22 : 20} 
+                                size={isSelected ? 22 : 20}
                                 style={[styles.icons, isSelected && styles.iconsSelected]}
                             />
+                            {tab.name === 'Cart' && (
+                                <View style={styles.badge}>
+                                    <Text style={styles.badgeText}>{totalItems}</Text>
+                                </View>
+                            )}
                         </View>
                     </TouchableOpacity>
                 );
@@ -57,17 +67,17 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     navItemSelected: {
-        transform: [{ translateY: -30 }], 
+        transform: [{ translateY: -30 }],
     },
     iconWrapper: {
         backgroundColor: 'transparent',
         borderRadius: 30,
-        padding: 6, 
+        padding: 6,
     },
     iconWrapperSelected: {
         backgroundColor: '#FFB340',
         borderRadius: 30,
-        padding: 8, 
+        padding: 8,
         borderWidth: 2,
         borderColor: "#FFB340",
     },
@@ -76,6 +86,23 @@ const styles = StyleSheet.create({
     },
     iconsSelected: {
         color: "#1E1E1E",
+    },
+    badge: {
+        position: 'absolute',
+        top: -4,
+        right: -4,
+        backgroundColor: '#E53935',
+        borderRadius: 8,
+        paddingHorizontal: 5,
+        paddingVertical: 1,
+        minWidth: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    badgeText: {
+        color: '#fff',
+        fontSize: 10,
+        fontWeight: 'bold',
     },
 });
 

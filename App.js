@@ -15,6 +15,7 @@ import { CartProvider } from './contexts/CartContext';
 import Activity from './pages/Activity';
 import Progression from './pages/Progression';
 import Menu from "./pages/Menu";
+import ActivityDetails from './pages/ActivityDetails';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ export default function App() {
               <Stack.Screen name="Logout" component={Login} />
               <Stack.Screen name="Progression" component={Progression} />
               <Stack.Screen name="Menu" component={Menu} />
+              <Stack.Screen name="ActivityDetails" component={ActivityDetails} />
             </Stack.Navigator>
           </NavigationContainer>
         </CartProvider>

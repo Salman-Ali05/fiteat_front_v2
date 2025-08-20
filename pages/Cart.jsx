@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
 
 const Cart = () => {
-    const { cartItems } = useContext(CartContext);
+    const { cartItems, clearCart } = useContext(CartContext);
     const totalAmount = cartItems.reduce((acc, item) => {
         const numericPrice = parseFloat(
             typeof item.price === 'string' ? item.price.replace(',', '.') : item.price
@@ -17,6 +17,7 @@ const Cart = () => {
 
     const handleConfirmOrder = () => {
         Alert.alert("Commande confirmée");
+        clearCart();
     };
 
     const renderEmptyCart = () => (

@@ -1,17 +1,26 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
 
 const WorkoutCard = ({ title, image }) => {
+    const navigation = useNavigation();
+
     return (
-        <View style={styles.card}>
-            <Image source={image} style={styles.image} />
-            <Text style={styles.title}>{title}</Text>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('ActivityDetails', { title, image })} style={styles.cardContainer}>
+            <View style={styles.card}>
+                <Image source={image} style={styles.image} />
+                <Text style={styles.title}>{title}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
 export default WorkoutCard;
 
 const styles = StyleSheet.create({
+    cardContainer: {
+        flex: 1,
+    },
     card: {
         flex: 1,
         backgroundColor: '#FFB340',
